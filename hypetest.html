@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>동의 창</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            align-items: center;
+            justify-content: center;
+        }
+        
+        #content {
+            background-color: #fff;
+            padding: 20px;
+            max-width: 100%;
+            max-height: 100%;
+            overflow: auto;
+            text-align: center;
+        }
+        
+        #button {
+            cursor: pointer;
+            padding: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+        }
+        
+        #terms {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="overlay">
+        <div id="content">
+            <img src="https://t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/3teK/image/gixZENOSu7aXvhpHt3mUU6xA2l8.gif" alt="Agreement Image">
+        </div>
+    </div>
+    <div id="termsdiv">
+        <h1 id="terms">사이트 활용 동의서</h1>
+        <p></p>
+        <div id="button">동의</div>
+    </div>
+
+    <script>
+        const overlay = document.getElementById('overlay');
+        const button = document.getElementById('button');
+        const termsdiv = document.getElementById('termsdiv');
+
+        button.addEventListener('click', () => {
+            // 이미지를 제외한 모든 자식 요소를 숨깁니다.
+            Array.from(overlay.children).forEach(child => {
+                if (child.id !== 'content') {
+                    child.style.display = 'none';
+                }
+            });
+            overlay.style.display = 'flex';
+            Array.from(termsdiv.children).forEach(child => {
+
+                child.style.display = 'none';
+
+            });
+            termsdiv.style.display = 'flex';
+        });
+
+        /*overlay.addEventListener('click', (event) => {
+            if (event.target === overlay) {
+                // 모든 자식 요소를 다시 보이게 합니다.
+                Array.from(overlay.children).forEach(child => {
+                    child.style.display = 'block';
+                });
+                overlay.style.display = 'none';
+                Array.from(termsdiv.children).forEach(child => {
+                    child.style.display = 'block';
+                });
+                termsdiv.style.display = 'none';
+            }
+        });*/
+    </script>
+
+</body>
+
+</html>
